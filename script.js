@@ -4,6 +4,7 @@ const main = document.getElementById('main');
 const btnAddUser = document.getElementById('add-user');
 const btnDouble = document.getElementById('double');
 const btnFilter = document.getElementById('filter-rich');
+const btnSort = document.getElementById('sort');
 const btnTotal = document.getElementById('total');
 
 let data = [];
@@ -60,13 +61,30 @@ const filterRich = function() {
     updateDOM();
 }
 
-//function total amount
-const totalAmount = function() {
+//Function Sort
+const sort = function() {
+    data.sort(function(a, b) {
+        let nameA = a.name.toUpperCase();
+        let nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        else if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+      updateDOM();
+}
+
+//Function total amount
+const totalAmount = function(event) {
     const wealth = data.reduce((acc, user) => (acc = acc + user.balance), 0);
 
     const wealthEl = document.createElement('div');
     wealthEl.innerHTML = `<h3>Total Amount: <strong>${formatToCurrency(wealth)}</strong></h3>`;
     main.appendChild(wealthEl);
+    $( this ).off( event );
 }
 
 //Event Listeners
@@ -76,4 +94,6 @@ btnDouble.addEventListener('click',doubleBalance);
 
 btnFilter.addEventListener('click',filterRich);
 
-btnTotal.addEventListener('click',totalAmount);
+btnSort.addEventListener('click',sort);
+
+btnTotal.on('click',totalAmount);
