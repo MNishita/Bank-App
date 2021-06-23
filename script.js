@@ -7,7 +7,7 @@ const btnFilter = document.getElementById('filter-rich');
 const btnSort = document.getElementById('sort');
 const btnTotal = document.getElementById('total');
 
-let data = [];
+let data = [];let check=1;
 
 //Fetch a random user from Random user API
 const getRandomUser = async function() {
@@ -78,13 +78,13 @@ const sort = function() {
 }
 
 //Function total amount
-const totalAmount = function(event) {
+const totalAmount = function() {
     const wealth = data.reduce((acc, user) => (acc = acc + user.balance), 0);
 
     const wealthEl = document.createElement('div');
     wealthEl.innerHTML = `<h3>Total Amount: <strong>${formatToCurrency(wealth)}</strong></h3>`;
-    main.appendChild(wealthEl);
-    $( this ).off( event );
+    check++;
+    if(check===2) main.appendChild(wealthEl);
 }
 
 //Event Listeners
@@ -96,4 +96,4 @@ btnFilter.addEventListener('click',filterRich);
 
 btnSort.addEventListener('click',sort);
 
-btnTotal.on('click',totalAmount);
+btnTotal.addEventListener('click',totalAmount);
