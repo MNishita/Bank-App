@@ -16,7 +16,7 @@ const getRandomUser = async function() {
 
     const newUser = {
         name: `${user.name.first} ${user.name.last}`,
-        balance: Math.floor(Math.random()*1000000)
+        balance: Math.floor(Math.random()*100000)
     };
 
     addData(newUser);
@@ -54,7 +54,15 @@ const doubleBalance = function() {
     updateDOM();
 };
 
+//Function filter rich
+const filterRich = function() {
+    data = data.filter((user) => user.balance > 50000);
+    updateDOM();
+}
+
 //Event Listeners
 btnAddUser.addEventListener('click',getRandomUser);
 
 btnDouble.addEventListener('click',doubleBalance);
+
+btnFilter.addEventListener('click',filterRich);
