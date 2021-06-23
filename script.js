@@ -46,6 +46,13 @@ function formatToCurrency(amount) {
      });
 }
 
+//Function doubleBalance
+const doubleBalance = function() {
+    data = data.map(user => {
+        return {...user, balance: user.balance *2};
+    });
+    updateDOM();
+};
 
 //Event Listeners
 btnAddUser.addEventListener('click',getRandomUser);
