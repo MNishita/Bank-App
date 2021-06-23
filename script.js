@@ -60,9 +60,20 @@ const filterRich = function() {
     updateDOM();
 }
 
+//function total amount
+const totalAmount = function() {
+    const wealth = data.reduce((acc, user) => (acc = acc + user.balance), 0);
+
+    const wealthEl = document.createElement('div');
+    wealthEl.innerHTML = `<h3>Total Amount: <strong>${formatToCurrency(wealth)}</strong></h3>`;
+    main.appendChild(wealthEl);
+}
+
 //Event Listeners
 btnAddUser.addEventListener('click',getRandomUser);
 
 btnDouble.addEventListener('click',doubleBalance);
 
 btnFilter.addEventListener('click',filterRich);
+
+btnTotal.addEventListener('click',totalAmount);
