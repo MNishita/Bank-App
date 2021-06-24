@@ -25,13 +25,14 @@ const getRandomUser = async function() {
 
 //Function addData
 const addData = function(obj) {
+    check=1;
     data.push(obj);
     updateDOM();
 }
 
 //Function update DOM
 const updateDOM = function(providedData = data) {
-    main.innerHTML = '<h2><strong>Name</strong> Balance</h2>';
+    main.innerHTML = '';
     providedData.forEach(item => {
         const element = document.createElement('div');
         element.classList.add('users');
@@ -49,6 +50,7 @@ function formatToCurrency(amount) {
 
 //Function doubleBalance
 const doubleBalance = function() {
+    check=1;
     data = data.map(user => {
         return {...user, balance: user.balance *2};
     });
@@ -57,12 +59,14 @@ const doubleBalance = function() {
 
 //Function filter rich
 const filterRich = function() {
+    check=1;
     data = data.filter((user) => user.balance > 50000);
     updateDOM();
 }
 
 //Function Sort
 const sort = function() {
+    check=1;
     data.sort(function(a, b) {
         let nameA = a.name.toUpperCase();
         let nameB = b.name.toUpperCase();
