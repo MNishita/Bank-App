@@ -32,7 +32,7 @@ const addData = function(obj) {
 
 //Function update DOM
 const updateDOM = function(providedData = data) {
-    main.innerHTML = '';
+    main.innerHTML = '<h2><strong>Name</strong> Balance</h2>';
     providedData.forEach(item => {
         const element = document.createElement('div');
         element.classList.add('users');
